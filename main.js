@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 17:49:33
+ * @LastEditTime: 2019-03-29 19:36:00
  */
 
 //全局变量定义
@@ -50,20 +50,37 @@ function initScript() {
 };
 
 /**
- * @name: 视频学习
- * @param none
- * @return: none
+ * @name: 弹窗处理函数
+ * @param 
+ * @return: 
  */
-function videoStudy() {
-    while (!desc("学习").exists());
-    if (click("视频学习") == true) {
-        toast("开始视频学习");
+function popupDeal(params) {
+    while (text("我知道了").exists()) {
+        text("我知道了").click();
     }
-    toSDelay(2);
-    if (click("联播频道") == true) {
-        toast("进入联播频道");
+}
+
+/**
+ * @name: 微信分享函数
+ * @param {type} 
+ * @return: 
+ */
+function wechatShare(loop) {
+    for (var i = 1; i <= loop; i++) {
+        while (!text("观点").exists());
+        var shareIcon = className("android.widget.ImageView").bounds(918, 1818, 1026, 1890).depth(2).findOne();
+        shareIcon.click()
+        toast("开始分享第" + i + "次");
+        toSDelay(5);
+        while (!text("分享给微信好友").exists());
+        var wechatIcon = className("android.widget.RelativeLayout").bounds(570, 976, 780, 1273).depth(4).findOne();
+        wechatIcon.click();
+        toast("跳转微信中……");
+        while (!text("多选").exists());//等待微信界面载入
+        toSDelay(2);
+        back();
+        toSDelay(2);
     }
-    toSDelay(5);
     return true;
 }
 
@@ -91,6 +108,7 @@ function videoWatch() {
     }, vTimeTotal);
     return true;
 }
+
 /**
  * @name: 视频学习子任务02→视频收藏分享
  * @param {none} 
@@ -142,43 +160,39 @@ function videoShare(params) {
     return true;
 }
 
+
+
+
 /**
- * @name: 弹窗处理函数
- * @param 
- * @return: 
+ * @name: 视频学习
+ * @param none
+ * @return: none
  */
-function popupDeal(params) {
-    while (text("我知道了").exists()) {
-        text("我知道了").click();
+function videoStudy() {
+    while (!desc("学习").exists());
+    if (click("视频学习") == true) {
+        toast("开始视频学习");
     }
-}
-/**
- * @name: 微信分享函数
- * @param {type} 
- * @return: 
- */
-function wechatShare(loop) {
-    for (var i = 1; i <= loop; i++) {
-        while (!text("观点").exists());
-        var shareIcon = className("android.widget.ImageView").bounds(918, 1818, 1026, 1890).depth(2).findOne();
-        shareIcon.click()
-        toast("开始分享第" + i + "次");
-        toSDelay(5);
-        while (!text("分享给微信好友").exists());
-        var wechatIcon = className("android.widget.RelativeLayout").bounds(570, 976, 780, 1273).depth(4).findOne();
-        wechatIcon.click();
-        toast("跳转微信中……");
-        while (!text("多选").exists());//等待微信界面载入
-        toSDelay(2);
+    toSDelay(2);
+    if (click("联播频道") == true) {
+        toast("进入联播频道");
+    }
+    toSDelay(5);
+    if(videoWatch()==true){
         back();
-        toSDelay(2);
+        toSDelay(5);
+        videoShare(sState);
     }
     return true;
 }
 
+
+
+
+
 auto.waitFor(); //辅助权限等待授予
 initScript();
 videoStudy();
-videoWatch();
+//videoWatch();
 //back();
 //videoShare(sState);

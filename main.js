@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 22:06:01
+ * @LastEditTime: 2019-03-29 22:16:22
  */
 
 //全局变量定义
@@ -72,8 +72,8 @@ function wechatShare(loop) {
         var shareIcon = className("android.widget.ImageView").bounds(918, 1818, 1026, 1890).depth(2).findOne();
         shareIcon.click()
         toast("开始分享第" + i + "次");
-        toSDelay(5);
-        while (!text("分享给微信好友").exists());
+        //toSDelay(5);
+        while (!textContains("分享给微信").exists());
         var wechatIcon = className("android.widget.RelativeLayout").bounds(570, 976, 780, 1273).depth(4).findOne();
         wechatIcon.click();
         toast("跳转微信中……");
@@ -100,7 +100,7 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
-    for(var vTime = 0;vTime < vTimeTotal;){
+    for(var vTime = 0;vTime < vTimeTotal+1;){
         toSDelay(5);
         vTime += 5
         if(vTime <= 60){
@@ -125,7 +125,7 @@ function videoWatch() {
 function videoShare(params) {
    // while (!desc("学习").exists());
     if (params == 0) {
-        var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1404).depth(4).findOne();
+        var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1560).depth(4).findOne();
         if (secondVideo.click() == true) {
             toast("进入第二条视频新闻");
             params = 1;
@@ -137,7 +137,7 @@ function videoShare(params) {
         if (text("继续播放").exists()) {
             text("继续播放").click();
         }
-        for(var sTime = 0;sTime < sTimeTotal;){
+        for(var sTime = 0;sTime < sTimeTotal+1;){
             toSDelay(5);
             sTime+=5
             if(sTime<=60){

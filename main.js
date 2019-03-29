@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 21:37:30
+ * @LastEditTime: 2019-03-29 21:43:08
  */
 
 //全局变量定义
@@ -82,6 +82,7 @@ function wechatShare(loop) {
         back();
         toSDelay(2);
     }
+    toast("微信分享完成！");
     return true;
 }
 
@@ -99,8 +100,9 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
-    for(var vTime = 0;vTime <= vTimeTotal;vTime += 5){
+    for(var vTime = 0;vTime <= vTimeTotal;){
         toSDelay(5);
+        vTime += 5
         if(vTime <= 60){
             toast("已学习" + vTime + "秒");
         }
@@ -111,7 +113,7 @@ function videoWatch() {
         }
     }
     toast("视频观看完成");
-    toSDelay(2);
+    toSDelay(5);
     return true;
 }
 
@@ -135,8 +137,9 @@ function videoShare(params) {
         if (text("继续播放").exists()) {
             text("继续播放").click();
         }
-        for(var sTime = 0;sTime <= sTimeTotal;sTime+=5){
+        for(var sTime = 0;sTime <= sTimeTotal;){
             toSDelay(5);
+            sTime+=5
             if(sTime<=60){
                 toast("已学习" + sTime + "秒");
             }
@@ -146,7 +149,8 @@ function videoShare(params) {
                 toast("已学习" + vTimeM + "分" + sTimeS + "秒");
             }
         }
-        toast("视频观看完成");      
+        toast("视频观看完成");
+        toSDelay(3);      
         params = 2;
     }
     if (params == 2) {
@@ -160,7 +164,7 @@ function videoShare(params) {
         popupDeal();//处理首次收藏提示弹窗
     }
     if (params == 3) {
-        weChatShare(loops);
+        wechatShare(loops);
         toast("视频分享任务完成");
     }
     if (params == -1) {

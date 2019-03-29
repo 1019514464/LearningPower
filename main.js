@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 21:17:44
+ * @LastEditTime: 2019-03-29 21:37:30
  */
 
 //全局变量定义
@@ -111,6 +111,7 @@ function videoWatch() {
         }
     }
     toast("视频观看完成");
+    toSDelay(2);
     return true;
 }
 
@@ -122,7 +123,7 @@ function videoWatch() {
 function videoShare(params) {
    // while (!desc("学习").exists());
     if (params == 0) {
-        var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1482).depth(4).findOne();
+        var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1404).depth(4).findOne();
         if (secondVideo.click() == true) {
             toast("进入第二条视频新闻");
             params = 1;
@@ -187,7 +188,6 @@ function videoStudy() {
     }
     toSDelay(5);
     if(videoWatch() == true){
-        toSDelay(vTimeTotal+5);
         back();
         toSDelay(5);
         videoShare(sState);

@@ -4,16 +4,16 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 19:43:26
+ * @LastEditTime: 2019-03-29 20:16:24
  */
 
 //全局变量定义
 // var vState = 0;//视频学习状态
 var sState = 0;//视频分享状态
 var vTimeTotal = 20000;//视频学习目标时间，默认视频学习时长25分钟（1500000）
-var vTime = 0;//视频学习时间
+//var vTime = 0;//视频学习时间
 var sTimeTotal = 10000;//视频分享目标时间，默认视频分享时长10秒
-var sTime = 0;//视频分享时间
+//var sTime = 0;//视频分享时间
 var loops = 2;//视频分享次数，默认分享6次
 
 /**
@@ -34,9 +34,9 @@ function initScript() {
     // vState = 0;//视频学习状态
     sState = 0;//视频分享状态
     vTimeTotal = 20000;//视频学习目标时间
-    vTime = 0;//视频学习时间
+    //vTime = 0;//视频学习时间
     sTimeTotal = 10000;//视频分享目标时间，默认视频分享时长10秒
-    sTime = 0;//视频分享时间
+    //sTime = 0;//视频分享时间
     loops = 2;//视频分享次数，默认分享6次
     toast('Hello World!');
     toSDelay(2);
@@ -58,6 +58,7 @@ function popupDeal(params) {
     while (text("我知道了").exists()) {
         text("我知道了").click();
     }
+    return true;
 }
 
 /**
@@ -98,15 +99,28 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
-    var videoTimer01 = setInterval(function () {
+    for(var vTime = 0;vTime <= vTimeTotal;vTime+=5){
+        toSDelay(5);
+        if(vTime<60){
+            toast("已学习" + vTime + "秒");
+        }
+        else{
+            var vTimeM = vTime%60;
+            var vTimeS = vTime-vTimeM*60;
+            toast("已学习" + vTimeM + "分" + vTimeS + "秒");
+        }
+    }
+    toast("视频观看完成");
+    return true;
+
+    /*var videoTimer01 = setInterval(function () {
         vTime = vTime + 5;
         toast("已学习" + vTime + "秒");
     }, 5000);
     setTimeout(function () {
         clearInterval(videoTimer01);
         toast("视频任务完成");
-        return true;
-    }, vTimeTotal);
+    }, vTimeTotal);*/
 }
 
 /**
@@ -115,7 +129,7 @@ function videoWatch() {
  * @return: none
  */
 function videoShare(params) {
-    //while (!desc("学习").exists());
+    while (!desc("学习").exists());
     if (params == 0) {
         var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1482).depth(4).findOne();
         if (secondVideo.click() == true) {
@@ -129,6 +143,21 @@ function videoShare(params) {
         if (text("继续播放").exists()) {
             text("继续播放").click();
         }
+        for(var sTime = 0;sTime <= sTimeTotal;sTime+=5){
+            toSDelay(5);
+            if(sTime<60){
+                toast("已学习" + sTime + "秒");
+            }
+            else{
+                var sTimeM = sTime%60;
+                var sTimeS = sTime-sTimeM*60;
+                toast("已学习" + vTimeM + "分" + sTimeS + "秒");
+            }
+        }
+        toast("视频观看完成");      
+        params = 2;
+
+        /*
         var videoTimer02 = setInterval(function () {
             sTime = sTime + 5;
             toast("已学习" + sTime + "秒");
@@ -138,7 +167,7 @@ function videoShare(params) {
             params = 2;
             toSDelay(2);
             toast("视频观看完成");
-        }, sTimeTotal);
+        }, sTimeTotal);*/
     }
     if (params == 2) {
         var starIcon = className("android.widget.ImageView").bounds(774, 1818, 918, 1890).depth(2).findOne();

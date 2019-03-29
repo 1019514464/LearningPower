@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 21:43:54
+ * @LastEditTime: 2019-03-29 22:03:19
  */
 
 //全局变量定义
@@ -63,7 +63,7 @@ function popupDeal(params) {
 
 /**
  * @name: 微信分享函数
- * @param {type} 
+ * @param 
  * @return: 
  */
 function wechatShare(loop) {
@@ -154,6 +154,10 @@ function videoShare(params) {
         params = 2;
     }
     if (params == 2) {
+        wechatShare(loops);
+        toast("视频分享任务完成");
+    }
+    if (params == 3) {
         var starIcon = className("android.widget.ImageView").bounds(774, 1818, 918, 1890).depth(2).findOne();
         if (starIcon.click() == true) {
             toast("收藏成功");
@@ -161,11 +165,7 @@ function videoShare(params) {
             toSDelay(5);
         }
         else params = -1;
-        popupDeal();//处理首次收藏提示弹窗
-    }
-    if (params == 3) {
-        wechatShare(loops);
-        toast("视频分享任务完成");
+        //popupDeal();//处理首次收藏提示弹窗
     }
     if (params == -1) {
         toast("点击失败");

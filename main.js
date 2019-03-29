@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 22:03:19
+ * @LastEditTime: 2019-03-29 22:06:01
  */
 
 //全局变量定义
@@ -100,7 +100,7 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
-    for(var vTime = 0;vTime <= vTimeTotal;){
+    for(var vTime = 0;vTime < vTimeTotal;){
         toSDelay(5);
         vTime += 5
         if(vTime <= 60){
@@ -137,7 +137,7 @@ function videoShare(params) {
         if (text("继续播放").exists()) {
             text("继续播放").click();
         }
-        for(var sTime = 0;sTime <= sTimeTotal;){
+        for(var sTime = 0;sTime < sTimeTotal;){
             toSDelay(5);
             sTime+=5
             if(sTime<=60){

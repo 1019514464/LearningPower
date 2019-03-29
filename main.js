@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 19:36:00
+ * @LastEditTime: 2019-03-29 19:43:26
  */
 
 //全局变量定义
@@ -105,8 +105,8 @@ function videoWatch() {
     setTimeout(function () {
         clearInterval(videoTimer01);
         toast("视频任务完成");
+        return true;
     }, vTimeTotal);
-    return true;
 }
 
 /**
@@ -185,10 +185,6 @@ function videoStudy() {
     }
     return true;
 }
-
-
-
-
 
 auto.waitFor(); //辅助权限等待授予
 initScript();

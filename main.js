@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 21:12:20
+ * @LastEditTime: 2019-03-29 21:17:44
  */
 
 //全局变量定义
@@ -120,7 +120,7 @@ function videoWatch() {
  * @return: none
  */
 function videoShare(params) {
-    while (!desc("学习").exists());
+   // while (!desc("学习").exists());
     if (params == 0) {
         var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1482).depth(4).findOne();
         if (secondVideo.click() == true) {

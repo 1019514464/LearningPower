@@ -4,15 +4,15 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 21:04:24
+ * @LastEditTime: 2019-03-29 21:12:20
  */
 
 //全局变量定义
 // var vState = 0;//视频学习状态
 var sState = 0;//视频分享状态
-var vTimeTotal = 20000;//视频学习目标时间，默认视频学习时长25分钟（1500000）
+var vTimeTotal = 20;//视频学习目标时间（秒），默认视频学习时长25分钟（25*60）
 //var vTime = 0;//视频学习时间
-var sTimeTotal = 10000;//视频分享目标时间，默认视频分享时长10秒
+var sTimeTotal = 10;//视频分享目标时间（秒），默认视频分享时长10秒
 //var sTime = 0;//视频分享时间
 var loops = 2;//视频分享次数，默认分享6次
 
@@ -33,9 +33,9 @@ function toSDelay(params) {
 function initScript() {
     // vState = 0;//视频学习状态
     sState = 0;//视频分享状态
-    vTimeTotal = 20000;//视频学习目标时间
+    vTimeTotal = 20;//视频学习目标时间
     //vTime = 0;//视频学习时间
-    sTimeTotal = 10000;//视频分享目标时间，默认视频分享时长10秒
+    sTimeTotal = 10;//视频分享目标时间，默认视频分享时长10秒
     //sTime = 0;//视频分享时间
     loops = 2;//视频分享次数，默认分享6次
     toast('Hello World!');
@@ -136,12 +136,12 @@ function videoShare(params) {
         }
         for(var sTime = 0;sTime <= sTimeTotal;sTime+=5){
             toSDelay(5);
-            if(sTime<60){
+            if(sTime<=60){
                 toast("已学习" + sTime + "秒");
             }
             else{
-                var sTimeM = sTime%60;
-                var sTimeS = sTime-sTimeM*60;
+                var sTimeM =  parseInt(sTime / 60) ;
+                var sTimeS = sTime-sTimeM * 60;
                 toast("已学习" + vTimeM + "分" + sTimeS + "秒");
             }
         }

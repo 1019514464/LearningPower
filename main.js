@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 22:16:22
+ * @LastEditTime: 2019-03-29 22:25:59
  */
 
 //全局变量定义
@@ -31,13 +31,6 @@ function toSDelay(params) {
  * @return: none
  */
 function initScript() {
-    // vState = 0;//视频学习状态
-    sState = 0;//视频分享状态
-    vTimeTotal = 20;//视频学习目标时间
-    //vTime = 0;//视频学习时间
-    sTimeTotal = 10;//视频分享目标时间，默认视频分享时长10秒
-    //sTime = 0;//视频分享时间
-    loops = 2;//视频分享次数，默认分享6次
     toast('Hello World!');
     toSDelay(2);
     toast('学习强国启动中……');
@@ -72,7 +65,7 @@ function wechatShare(loop) {
         var shareIcon = className("android.widget.ImageView").bounds(918, 1818, 1026, 1890).depth(2).findOne();
         shareIcon.click()
         toast("开始分享第" + i + "次");
-        //toSDelay(5);
+        toSDelay(5);
         while (!textContains("分享给微信").exists());
         var wechatIcon = className("android.widget.RelativeLayout").bounds(570, 976, 780, 1273).depth(4).findOne();
         wechatIcon.click();

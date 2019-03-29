@@ -4,9 +4,9 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-29 17:36:49
- * @LastEditTime: 2019-03-29 19:14:22
+ * @LastEditTime: 2019-03-29 19:15:54
  -->
-# LearningPower
+# 学习强国（LearningPower）
 【安卓端】基于**Auto.Js**的**学习强国APP**自动化脚本，可完成视频播放，文章点赞、收藏与分享等功能
 ---
 - ### 运行环境：

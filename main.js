@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-29 20:16:24
+ * @LastEditTime: 2019-03-29 21:04:24
  */
 
 //全局变量定义
@@ -99,28 +99,19 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
-    for(var vTime = 0;vTime <= vTimeTotal;vTime+=5){
+    for(var vTime = 0;vTime <= vTimeTotal;vTime += 5){
         toSDelay(5);
-        if(vTime<60){
+        if(vTime <= 60){
             toast("已学习" + vTime + "秒");
         }
         else{
-            var vTimeM = vTime%60;
-            var vTimeS = vTime-vTimeM*60;
+            var vTimeM = parseInt(vTime / 60);
+            var vTimeS = vTime - vTimeM * 60;
             toast("已学习" + vTimeM + "分" + vTimeS + "秒");
         }
     }
     toast("视频观看完成");
     return true;
-
-    /*var videoTimer01 = setInterval(function () {
-        vTime = vTime + 5;
-        toast("已学习" + vTime + "秒");
-    }, 5000);
-    setTimeout(function () {
-        clearInterval(videoTimer01);
-        toast("视频任务完成");
-    }, vTimeTotal);*/
 }
 
 /**
@@ -156,18 +147,6 @@ function videoShare(params) {
         }
         toast("视频观看完成");      
         params = 2;
-
-        /*
-        var videoTimer02 = setInterval(function () {
-            sTime = sTime + 5;
-            toast("已学习" + sTime + "秒");
-        }, 5000);
-        setTimeout(function () {
-            clearInterval(videoTimer02);
-            params = 2;
-            toSDelay(2);
-            toast("视频观看完成");
-        }, sTimeTotal);*/
     }
     if (params == 2) {
         var starIcon = className("android.widget.ImageView").bounds(774, 1818, 918, 1890).depth(2).findOne();
@@ -207,7 +186,8 @@ function videoStudy() {
         toast("进入联播频道");
     }
     toSDelay(5);
-    if(videoWatch()==true){
+    if(videoWatch() == true){
+        toSDelay(vTimeTotal+5);
         back();
         toSDelay(5);
         videoShare(sState);

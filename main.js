@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-30 20:16:47
+ * @LastEditTime: 2019-03-30 20:52:18
  */
 
 //全局变量定义
@@ -178,20 +178,28 @@ function videoShare(params) {
  */
 function videoStudy() {
     while (!desc("学习").exists());
-    if (click("视频学习") == true) {
+    if (desc("视频学习").click() == true) {
         toast("开始视频学习");
     }
     toSDelay(2);
-    if (click("联播频道") == true) {
+    if (desc("联播频道").click() == true) {
         toast("进入联播频道");
     }
     toSDelay(5);
-    if(videoWatch() == true){
-        back();
-        toSDelay(5);
-        videoShare(sState);
-    }
+    videoWatch()
+    back();
+    toSDelay(5);
+    videoShare(sState);
     return true;
+}
+/**
+ * @name: 文章学习函数
+ * @param {type} 
+ * @return: 
+ */
+function newsStudy() {
+    while(!desc("学习").exists());
+    desc("学习").click();
 }
 
 auto.waitFor(); //辅助权限等待授予

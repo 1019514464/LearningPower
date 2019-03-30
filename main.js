@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-30 20:09:36
+ * @LastEditTime: 2019-03-30 20:16:47
  */
 
 //全局变量定义
@@ -197,6 +197,3 @@ function videoStudy() {
 auto.waitFor(); //辅助权限等待授予
 initScript();
 videoStudy();
-//videoWatch();
-//back();
-//videoShare(sState);

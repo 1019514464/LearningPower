@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-30 21:26:44
+ * @LastEditTime: 2019-03-30 22:16:54
  */
 
 //全局变量定义
@@ -92,6 +92,9 @@ function videoWatch() {
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
+    if (text("重新播放").exists()) {
+        text("重新播放").click();
+    }
     for(var vTime = 0;vTime < vTimeTotal;){
         toSDelay(5);
         vTime += 5
@@ -128,6 +131,9 @@ function videoShare(params) {
     if (params == 1) {
         if (text("继续播放").exists()) {
             text("继续播放").click();
+        }
+        if (text("重新播放").exists()) {
+            text("重新播放").click();
         }
         for(var sTime = 0;sTime < sTimeTotal;){
             toSDelay(5);
@@ -208,8 +214,9 @@ function newsStudy() {
         toSDelay(3);
     }
     var i = 0;
-    if(click('"学习强国"学习平台',i)==true){
-        toast("开始阅读第" + i+1 +"篇要闻……");
+    if(click("“学习强国”学习平台", i)==true){
+        var count = i+1;
+        toast("开始阅读第" + count +"篇要闻……");
         toSDelay(3);
     }
     for(var rTime = 0;rTime < rTimeTotal;){

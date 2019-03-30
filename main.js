@@ -4,12 +4,12 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-30 22:16:54
+ * @LastEditTime: 2019-03-30 22:35:15
  */
 
 //全局变量定义
 // var vState = 0;//视频学习状态
-var sState = 0;//视频分享状态
+//var sState = 0;//视频分享状态
 var vTimeTotal = 20;//视频学习目标时间（秒），默认视频学习时长25分钟（25*60）
 //var vTime = 0;//视频学习时间
 var sTimeTotal = 10;//视频分享目标时间（秒），默认视频分享时长10秒
@@ -84,24 +84,28 @@ function wechatShare(loop) {
  * @return: 
  */
 function videoWatch() {
-    var firstVideo = className("android.widget.FrameLayout").bounds(0, 361, 1080, 1165).depth(4).findOne();
-    if (firstVideo.click() == true) {
+    if (click("央视网", 1) == true) {
         toast("进入新闻联播");
         toSDelay(5);
     }
+   /*  var firstVideo = className("android.widget.FrameLayout").bounds(0, 361, 1080, 1165).depth(4).findOne();
+    if (firstVideo.click() == true) {
+        toast("进入新闻联播");
+        toSDelay(5);
+    } */
     if (text("继续播放").exists()) {
         text("继续播放").click();
     }
     if (text("重新播放").exists()) {
         text("重新播放").click();
     }
-    for(var vTime = 0;vTime < vTimeTotal;){
+    for (var vTime = 0; vTime < vTimeTotal;) {
         toSDelay(5);
         vTime += 5
-        if(vTime <= 60){
+        if (vTime <= 60) {
             toast("已学习" + vTime + "秒");
         }
-        else{
+        else {
             var vTimeM = parseInt(vTime / 60);
             var vTimeS = vTime - vTimeM * 60;
             toast("已学习" + vTimeM + "分" + vTimeS + "秒");
@@ -117,9 +121,71 @@ function videoWatch() {
  * @param {none} 
  * @return: none
  */
-function videoShare(params) {
-   // while (!desc("学习").exists());
-    if (params == 0) {
+function videoShare() {
+    // while (!desc("学习").exists());
+    if (click("央视网", 1) == true) {
+        toast("进入第二条视频新闻");
+        toSDelay(5);
+    }
+    if (text("继续播放").exists()) {
+        text("继续播放").click();
+    }
+    if (text("重新播放").exists()) {
+        text("重新播放").click();
+    }
+    for (var sTime1 = 0; sTime1 < sTimeTotal;) {
+        toSDelay(5);
+        sTime1 += 5
+        if (sTime1 <= 60) {
+            toast("已学习" + sTime1 + "秒");
+        }
+        else {
+            var sTimeM1 = parseInt(sTime1 / 60);
+            var sTimeS1 = sTime1 - sTimeM1 * 60;
+            toast("已学习" + sTimeM1 + "分" + sTimeS1 + "秒");
+        }
+    }
+    toSDelay(2);
+    toast("视频观看完成");
+    toSDelay(5);
+    back();
+    toSDelay(3);
+    if (click("央视网", 2) == true) {
+        toast("进入第三条视频新闻");
+        toSDelay(5);
+    }
+    if (text("继续播放").exists()) {
+        text("继续播放").click();
+    }
+    if (text("重新播放").exists()) {
+        text("重新播放").click();
+    }
+    for (var sTime2 = 0; sTime2 < sTimeTotal;) {
+        toSDelay(5);
+        sTime2 += 5
+        if (sTime2 <= 60) {
+            toast("已学习" + sTime2 + "秒");
+        }
+        else {
+            var sTimeM2 = parseInt(sTime2 / 60);
+            var sTimeS2 = sTime2 - sTimeM2 * 60;
+            toast("已学习" + sTimeM2 + "分" + sTimeS2 + "秒");
+        }
+    }
+    toSDelay(2);
+    toast("视频观看完成");
+    toSDelay(5);
+    wechatShare(loops);
+    toast("视频分享任务完成");
+    toSDelay(2);
+    var starIcon = className("android.widget.ImageView").bounds(774, 1818, 918, 1890).depth(2).findOne();
+    if (starIcon.click() == true) {
+        popupDeal();//处理首次收藏提示弹窗
+        toast("收藏成功");
+        toSDelay(5);
+    }
+    back();
+   /*  if (params == 0) {
         var secondVideo = className("android.widget.FrameLayout").bounds(0, 1165, 1080, 1560).depth(4).findOne();
         if (secondVideo.click() == true) {
             toast("进入第二条视频新闻");
@@ -135,21 +201,21 @@ function videoShare(params) {
         if (text("重新播放").exists()) {
             text("重新播放").click();
         }
-        for(var sTime = 0;sTime < sTimeTotal;){
+        for (var sTime = 0; sTime < sTimeTotal;) {
             toSDelay(5);
-            sTime+=5
-            if(sTime<=60){
+            sTime += 5
+            if (sTime <= 60) {
                 toast("已学习" + sTime + "秒");
             }
-            else{
-                var sTimeM =  parseInt(sTime / 60) ;
-                var sTimeS = sTime-sTimeM * 60;
+            else {
+                var sTimeM = parseInt(sTime / 60);
+                var sTimeS = sTime - sTimeM * 60;
                 toast("已学习" + sTimeM + "分" + sTimeS + "秒");
             }
         }
         toSDelay(2);
         toast("视频观看完成");
-        toSDelay(5);      
+        toSDelay(5);
         params = 2;
     }
     if (params == 2) {
@@ -170,7 +236,7 @@ function videoShare(params) {
     }
     if (params == -1) {
         toast("点击失败");
-    }
+    } */
     return true;
 }
 
@@ -190,12 +256,12 @@ function videoStudy() {
     toSDelay(2);
     if (click("联播频道") == true) {
         toast("进入联播频道");
-    } 
+    }
     toSDelay(5);
     videoWatch()
     back();
     toSDelay(5);
-    videoShare(sState);
+    videoShare();
     return true;
 }
 /**
@@ -204,41 +270,40 @@ function videoStudy() {
  * @return: 
  */
 function newsStudy() {
-    while(!desc("学习").exists());
-    if(desc("学习").click()==true){
+    while (!desc("学习").exists());
+    if (desc("学习").click() == true) {
         toast("进入学习模块");
         toSDelay(3);
     }
-    if(click("要闻") == true){
+    if (click("要闻") == true) {
         toast("进入要闻模块");
         toSDelay(3);
     }
     var i = 0;
-    if(click("“学习强国”学习平台", i)==true){
-        var count = i+1;
-        toast("开始阅读第" + count +"篇要闻……");
+    if (click("“学习强国”学习平台", i) == true) {
+        var count = i + 1;
+        toast("开始阅读第" + count + "篇要闻……");
         toSDelay(3);
     }
-    for(var rTime = 0;rTime < rTimeTotal;){
+    for (var rTime = 0; rTime < rTimeTotal;) {
         toSDelay(5);
-        rTime+=5
-        if(rTime<=60){
+        rTime += 5
+        if (rTime <= 60) {
             toast("已阅读" + rTime + "秒");
         }
-        else{
-            var rTimeM =  parseInt(rTime / 60) ;
-            var rTimeS = rTime-rTimeM * 60;
+        else {
+            var rTimeM = parseInt(rTime / 60);
+            var rTimeS = rTime - rTimeM * 60;
             toast("已学习" + rTimeM + "分" + rTimeS + "秒");
         }
     }
     toSDelay(2);
     toast("文章阅读完成");
     toSDelay(5);
+    back();
 }
 
 auto.waitFor(); //辅助权限等待授予
 initScript();
 videoStudy();
-back();
 newsStudy();
-back();

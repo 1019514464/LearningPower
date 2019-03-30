@@ -4,7 +4,7 @@
  * @Author: Veagau
  * @LastEditors: Veagau
  * @Date: 2019-03-27 15:49:14
- * @LastEditTime: 2019-03-30 20:52:18
+ * @LastEditTime: 2019-03-30 21:26:44
  */
 
 //全局变量定义
@@ -15,7 +15,7 @@ var vTimeTotal = 20;//视频学习目标时间（秒），默认视频学习时�
 var sTimeTotal = 10;//视频分享目标时间（秒），默认视频分享时长10秒
 //var sTime = 0;//视频分享时间
 var loops = 2;//视频分享次数，默认分享6次
-
+var rTimeTotal = 10;//文章阅读目标时间（秒），默认文章阅读时长16分钟（16*60）
 /**
  * @name:延迟函数ms→s 
  * @param {int}mm 
@@ -138,7 +138,7 @@ function videoShare(params) {
             else{
                 var sTimeM =  parseInt(sTime / 60) ;
                 var sTimeS = sTime-sTimeM * 60;
-                toast("已学习" + vTimeM + "分" + sTimeS + "秒");
+                toast("已学习" + sTimeM + "分" + sTimeS + "秒");
             }
         }
         toSDelay(2);
@@ -178,13 +178,13 @@ function videoShare(params) {
  */
 function videoStudy() {
     while (!desc("学习").exists());
-    if (desc("视频学习").click() == true) {
+    if (click("视频学习") == true) {
         toast("开始视频学习");
     }
     toSDelay(2);
-    if (desc("联播频道").click() == true) {
+    if (click("联播频道") == true) {
         toast("进入联播频道");
-    }
+    } 
     toSDelay(5);
     videoWatch()
     back();
@@ -199,9 +199,39 @@ function videoStudy() {
  */
 function newsStudy() {
     while(!desc("学习").exists());
-    desc("学习").click();
+    if(desc("学习").click()==true){
+        toast("进入学习模块");
+        toSDelay(3);
+    }
+    if(click("要闻") == true){
+        toast("进入要闻模块");
+        toSDelay(3);
+    }
+    var i = 0;
+    if(click('"学习强国"学习平台',i)==true){
+        toast("开始阅读第" + i+1 +"篇要闻……");
+        toSDelay(3);
+    }
+    for(var rTime = 0;rTime < rTimeTotal;){
+        toSDelay(5);
+        rTime+=5
+        if(rTime<=60){
+            toast("已阅读" + rTime + "秒");
+        }
+        else{
+            var rTimeM =  parseInt(rTime / 60) ;
+            var rTimeS = rTime-rTimeM * 60;
+            toast("已学习" + rTimeM + "分" + rTimeS + "秒");
+        }
+    }
+    toSDelay(2);
+    toast("文章阅读完成");
+    toSDelay(5);
 }
 
 auto.waitFor(); //辅助权限等待授予
 initScript();
 videoStudy();
+back();
+newsStudy();
+back();
